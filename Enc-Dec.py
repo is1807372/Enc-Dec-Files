@@ -49,3 +49,13 @@ def process_files(directory, action):
                 print(f"Error processing {file_path}: {e}")
 
 
+def select_directory(action):
+    folder_selected = filedialog.askdirectory()
+    if folder_selected:
+        try:
+            process_files(folder_selected, action)
+            messagebox.showinfo("Success", f"Files have been {action}ed successfully!")
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred: {e}")
+    else:
+        messagebox.showwarning("Warning", "No directory selected!")
