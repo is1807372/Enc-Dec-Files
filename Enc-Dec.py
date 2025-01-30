@@ -59,3 +59,27 @@ def select_directory(action):
             messagebox.showerror("Error", f"An error occurred: {e}")
     else:
         messagebox.showwarning("Warning", "No directory selected!")
+
+
+
+def main():
+    root = tk.Tk()
+    root.title("File Encryption/Decryption Tool")
+
+    root.geometry("400x200")
+
+    label = tk.Label(root, text="Encrypt/Decrypt Files in Directory", font=("Arial", 14))
+    label.pack(pady=20)
+
+    encrypt_button = tk.Button(root, text="Encrypt Files", width=20, command=lambda: select_directory("encrypt"))
+    encrypt_button.pack(pady=10)
+
+    decrypt_button = tk.Button(root, text="Decrypt Files", width=20, command=lambda: select_directory("decrypt"))
+    decrypt_button.pack(pady=10)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    generate_key() 
+    main()  
