@@ -32,3 +32,20 @@ def encrypt_file(file_path, key):
     encrypted_data = fernet.encrypt(data)
     with open(file_path, "wb") as file:
         file.write(encrypted_data)
+
+def process_files(directory, action):
+    key = load_key()
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        if os.path.isfile(file_path):  
+            try:
+                if action == "encrypt":
+                    encrypt_file(file_path, key)
+                    print(f"Encrypted: {file_path}")
+                elif action == "decrypt":
+                    decrypt_file(file_path, key)
+                    print(f"Decrypted: {file_path}")
+            except Exception as e:
+                print(f"Error processing {file_path}: {e}")
+
+
